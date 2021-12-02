@@ -3,6 +3,8 @@
 from arithmetic import (add, subtract, multiply, divide, square, cube,
                         power, mod, )
 
+#  reduce function can help functions in arithmetic take in a list of numbers
+from functools import reduce
 
 # Replace this with your code
 while True:
@@ -18,35 +20,32 @@ while True:
         continue
 
     operator = tokens[0]
-    num1 = float(tokens[1])
-
-    if len(tokens) > 2:
-        num2 = float(tokens[2])
+    num_list = [float(x) for x in tokens[1:]]
 
     result = None
     if operator == '+':
-        result = add(num1, num2)
+        result = reduce(add, num_list)
 
     elif operator == '-':
-        result = subtract(num1, num2)
+        result = reduce(subtract, num_list)
 
     elif operator == '*':
-        result = multiply(num1, num2)
+        result = reduce(multiply, num_list)
 
     elif operator == '/':
-        result = divide(num1, num2)
+        result = reduce(divide, num_list)
 
     elif operator == 'square':
-        result = square(num1)
+        result = [square(x) for x in num_list] if len(num_list) > 1 else square(num_list[0])
 
     elif operator == 'cube':
-        result = cube(num1)
+        result = [cube(x) for x in num_list] if len(num_list) > 1 else cube(num_list[0])
 
     elif operator == 'pow':
-        result = power(num1, num2)
+        result = reduce(power, num_list)
 
     elif operator == 'mod':
-        result = mod(num1, num2)
+        result = reduce(mod, num_list)
     
     else:
         result = 'Please enter an operator followed by two integers'
