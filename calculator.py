@@ -33,7 +33,7 @@ while True:
         result = reduce(multiply, num_list)
 
     elif operator == '/':
-        result = reduce(divide, num_list)
+        result = round(reduce(divide, num_list),2)
 
     elif operator == 'square':
         result = [square(x) for x in num_list] if len(num_list) > 1 else square(num_list[0])
